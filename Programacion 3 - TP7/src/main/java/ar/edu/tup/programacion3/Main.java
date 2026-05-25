@@ -1,9 +1,11 @@
-package ProyectoFinal;
+package ar.edu.tup.programacion3;
 
-import ProyectoFinal.DTOs.UsuarioDTO;
-import ProyectoFinal.Entities.*;
-import ProyectoFinal.Enums.FormaPago;
-import ProyectoFinal.Enums.Rol;
+import ar.edu.tup.programacion3.Entities.Categoria;
+import ar.edu.tup.programacion3.Entities.Pedido;
+import ar.edu.tup.programacion3.Entities.Producto;
+import ar.edu.tup.programacion3.Entities.Usuario;
+import ar.edu.tup.programacion3.Enums.FormaPago;
+import ar.edu.tup.programacion3.Enums.Rol;
 
 
 import java.util.*;
@@ -241,7 +243,7 @@ public class Main {
         List <Producto> pocoStock = new ArrayList<>();
         pocoStock = listaProducto.stream()
                 .filter( p -> p.getStock() < 5)
-                .collect(Collectors.toList());
+                .toList();
 
         pocoStock.forEach(System.out::println);
 

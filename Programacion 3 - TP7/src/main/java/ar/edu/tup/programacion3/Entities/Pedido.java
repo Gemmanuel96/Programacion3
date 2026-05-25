@@ -1,18 +1,14 @@
-package ProyectoFinal.Entities;
+package ar.edu.tup.programacion3.Entities;
 
-import ProyectoFinal.Enums.Estado;
-import ProyectoFinal.Enums.FormaPago;
-import jdk.jshell.spi.ExecutionControl;
+import ar.edu.tup.programacion3.Enums.Estado;
+import ar.edu.tup.programacion3.Enums.FormaPago;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.function.Function;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 @Getter

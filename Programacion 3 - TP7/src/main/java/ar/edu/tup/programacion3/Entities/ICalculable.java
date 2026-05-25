@@ -1,4 +1,4 @@
-package ProyectoFinal.Entities;
+package ar.edu.tup.programacion3.Entities;
 
 public interface ICalculable {
 

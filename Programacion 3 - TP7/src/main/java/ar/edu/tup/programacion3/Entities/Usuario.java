@@ -1,6 +1,6 @@
-package ProyectoFinal.Entities;
+package ar.edu.tup.programacion3.Entities;
 
-import ProyectoFinal.Enums.Rol;
+import ar.edu.tup.programacion3.Enums.Rol;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 

@@ -1,7 +1,6 @@
-package ProyectoFinal.Entities;
+package ar.edu.tup.programacion3.Entities;
 
 import lombok.*;
-import lombok.experimental.SuperBuilder;
 
 @Getter
 @Setter

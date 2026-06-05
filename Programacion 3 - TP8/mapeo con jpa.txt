@@ -1,0 +1,67 @@
+Opciones para mapear clases abstractas en JPA:
+
+1) @MappedSuperclass
+- Se usa cuando la clase abstracta no es una entidad por sí misma.
+- Los atributos comunes se heredan en las tablas de las subclases.
+- No se crea tabla para la clase abstracta.
+
+Ejemplo:
+@MappedSuperclass
+public abstract class BaseEntity {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private LocalDate createdAt;
+}
+
+@Entity
+@Table(name = "usuarios")
+public class Usuario extends BaseEntity {
+    private String nombre;
+}
+
+Resultado: solo existe la tabla usuarios con columnas id, createdAt, nombre.
+
+
+2) @Inheritance
+- Se usa cuando la clase abstracta sí es una entidad y querés modelar herencia en la BD.
+- La clase abstracta se marca con @Entity y @Inheritance.
+- Se crea una tabla para la clase base y se definen las relaciones con las subclases.
+
+Ejemplo con JOINED:
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class Producto {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String nombre;
+}
+
+@Entity
+@Table(name = "alimentos")
+public class Alimento extends Producto {
+    private int calorias;
+}
+
+@Entity
+@Table(name = "ropa")
+public class Ropa extends Producto {
+    private String talla;
+}
+
+Resultado:
+- Tabla producto con columnas comunes (id, nombre).
+- Tabla alimentos con columnas propias + FK a producto.
+- Tabla ropa con columnas propias + FK a producto.
+
+
+3) Estrategias de herencia disponibles:
+- SINGLE_TABLE: una sola tabla para todas las subclases. Pros: simple, rápido. Contras: muchos campos nulos.
+- JOINED: una tabla base + tablas hijas. Pros: normalización, evita nulos. Contras: más joins en consultas.
+- TABLE_PER_CLASS: cada subclase tiene su propia tabla. Pros: independencia total. Contras: consultas polimórficas más complejas.
+
+
+Regla práctica:
+- Si la clase abstracta es solo un contenedor de atributos comunes → usar @MappedSuperclass.
+- Si querés modelar herencia real en la BD → usar @Inheritance.

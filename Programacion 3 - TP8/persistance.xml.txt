@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence
+                                 https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+
+    <persistence-unit name="pruebaJpa_PU" transaction-type="RESOURCE_LOCAL">
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+
+        <!-- Agregá tus entidades acá -->
+        <class>org.jcr.entidades.Persona</class>
+
+        <properties>
+            <!-- Configuración JDBC -->
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:file:./data/testdb;DB_CLOSE_ON_EXIT=FALSE"/>
+            <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>
+            <property name="jakarta.persistence.jdbc.user" value="sa"/>
+            <property name="jakarta.persistence.jdbc.password" value=""/>
+
+            <!-- Configuración de Hibernate -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.format_sql" value="true"/>
+        </properties>
+    </persistence-unit>
+</persistence>
+
+------------------------------------------------
+
+dependencias
+
+ // JPA API
+    implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
+
+    // Implementación de JPA (Hibernate)
+    implementation 'org.hibernate.orm:hibernate-core:6.4.4.Final'
+
+    // Base de datos en memoria H2
+    runtimeOnly 'com.h2database:h2:2.2.224'
+
+    // Logger (opcional pero recomendable)
+    implementation 'org.slf4j:slf4j-simple:2.0.13'

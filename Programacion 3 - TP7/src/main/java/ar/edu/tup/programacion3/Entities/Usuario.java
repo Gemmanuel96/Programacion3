@@ -1,6 +1,9 @@
 package ar.edu.tup.programacion3.Entities;
 
 import ar.edu.tup.programacion3.Enums.Rol;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -14,6 +17,8 @@ import java.util.Set;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true,exclude = {"contrasenia","telefono"})
 @SuperBuilder
+@Entity
+@Table(name = "Usuario")
 public class Usuario extends Base {
 
     private String nombre;

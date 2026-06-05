@@ -1,5 +1,6 @@
 package ar.edu.tup.programacion3.Entities;
 
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -13,8 +14,12 @@ import java.time.LocalDateTime;
 @SuperBuilder
 @AllArgsConstructor
 
+@MappedSuperclass
 public abstract class Base {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     @Builder.Default
     private boolean eliminado = false;
     @Builder.Default
